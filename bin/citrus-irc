@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+require 'citrus/irc'
+
+host    = ENV['CITRUS_IRC_HOST']    || '127.0.0.1'
+port    = ENV['CITRUS_IRC_PORT']    || 6667
+channel = ENV['CITUTS_IRC_CHANNEL'] || '#citrus'
+url     = ENV['CITRUS_IRC_STREAM']  || 'http://127.0.0.1:8080/events'
+
+irc_client = Citrus::Irc::Client.new(host, port, channel, url)
+
+EM.run do
+  irc_client.start
+end
